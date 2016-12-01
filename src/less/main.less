@@ -1,0 +1,418 @@
+@import (reference) './bootstrap';
+
+
+// ==========================================================================
+// Main - Shared Styles for Global Elements
+// ==========================================================================
+
+body {
+  background-color: @color-background;
+  padding: 130px 0 60px 0;
+
+  @media (min-width: @screen-tablet) {
+    padding-top: 120px;
+  }
+
+  > .ne {
+    min-height: 100vh;
+    min-height: calc(~"100vh - 311px");
+
+    @media (min-width: @screen-tablet) {
+      min-height: calc(~"100vh - 235px");
+    }
+  }
+}
+
+a {
+  color: @color-link;
+  text-decoration: none;
+  word-wrap: break-word;
+  transition: .15s all ease-in-out;
+}
+
+button {
+  .wui-btn-reset();
+}
+
+.flex-center-horizontally {
+  display: flex;
+  justify-content: center;
+}
+
+
+// Unsupported Browser Notification
+// ==========================================================================
+
+.unsupported-browser {
+  // add position absolute for early versions of IE
+  position: absolute;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  background: @wui-red-1;
+  font-size: @fontsize-14;
+}
+
+.unsupported-browser-content {
+  padding: @spacing-small 20px;
+
+  .fa-exclamation-circle,
+  a {
+    color: @color-error-light;
+  }
+
+  .fa-exclamation-circle {
+    margin-right: 3px;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .ub-dismiss-btn {
+    position: absolute;
+    top: -5px;
+    right: 8px;
+    font-size: @fontsize-28;
+  }
+}
+
+
+// Helper Classes
+// ==========================================================================
+
+.body-text {
+  .body-text();
+}
+
+.overflow-visible {
+  overflow: visible;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
+.cursor-default {
+  cursor: default;
+}
+
+
+// Text Angular
+// ==========================================================================
+
+.ta-root {
+  .form-control {
+    border: 1px solid @wui-gray-b;
+    border-radius: 0;
+
+    &:focus {
+      border-color: @wui-blue-1;
+      box-shadow: none;
+      outline: 0;
+    }
+  }
+
+  .ta-scroll-window > .ta-bind {
+    word-wrap: break-word;
+    outline: 0;
+  }
+
+  &.focussed > .ta-scroll-window.form-control {
+    border-color: @wui-blue-1;
+    box-shadow: none;
+  }
+}
+
+.ne-ta-toolbar {
+  .btn-group {
+    margin-bottom: @spacing-small;
+  }
+
+  .btn-default {
+    border-color: @wui-gray-4;
+    background-color: @wui-gray-6;
+    color: @wui-white;
+
+    &:hover,
+    &:active,
+    &.active,
+    &:focus,
+    &.focus {
+      border-color: @wui-gray-6;
+      background-color: @wui-white;
+      color: @wui-gray-6;
+    }
+
+    /*Required to override text-angular wysiwig button styles*/
+    /*csslint unqualified-attributes: false*/
+    &:disabled,
+    &.disabled,
+    &[disabled] {
+      border-color: @wui-gray-b;
+      background-color: @wui-gray-b;
+      color: @wui-white;
+    }
+    /*csslint unqualified-attributes: true*/
+  }
+}
+
+
+// Modals
+// ==========================================================================
+
+.modal-content {
+  border-radius: 0;
+  border: none;
+}
+
+
+// Tabs
+// ==========================================================================
+
+.nav-tabs {
+  border: none;
+  background-color: @wui-white;
+}
+
+
+// Likes Active/Inactive States
+// ==========================================================================
+
+.like-active,
+.like-inactive {
+  border: none;
+  vertical-align: middle;
+  background-color: transparent;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.like-active {
+  color: @wui-gray-4;;
+}
+
+
+// Publication Badges
+// ==========================================================================
+
+.badge {
+  margin: 0 5px 5px 0;
+  background-color: @wui-gray-4;;
+  font-size: @fontsize-16;
+}
+
+
+// Watch Active/Inactive States
+// ==========================================================================
+
+.watch-icon-active,
+.watch-icon-inactive {
+  font-size: @fontsize-32;
+}
+
+.watch-icon-active {
+  color: @wui-gray-4;;
+}
+
+
+// Cards
+// ==========================================================================
+
+.wui-card {
+  margin: @spacing-small -15px;
+  word-wrap: break-word;
+
+  @media (min-width: @screen-tablet) {
+    margin: @spacing-small 0;
+  }
+
+  .wui-content-title--medium {
+    margin-bottom: @spacing-small;
+  }
+
+  .ne-user-profile-object__comment-wrapper {
+    margin-bottom: 18px;
+  }
+
+  .wui-metric,
+  .wui-icon-metric {
+    margin-left: @spacing-medium;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  p {
+    br:only-child {
+      display: none;
+    }
+  }
+}
+
+.wui-content-title--medium-card-title {
+  margin-bottom: @spacing-small;
+}
+
+.wui-card__header {
+  line-height: 1;
+}
+
+.wui-card__header--before-text {
+  margin-bottom: 15px;
+}
+
+.wui-card__body {
+  h1 {
+    .source-sans();
+    .wui-title();
+  }
+
+  h2 {
+    .source-sans();
+    .wui-subtitle();
+  }
+}
+
+.wui-card__heading-notification-like {
+  margin-bottom: 0;
+}
+
+.wui-card__horizontal-profiles-notification-like {
+  margin-top: @spacing-medium;
+}
+
+.wui-descriptor--article-source {
+  margin-top: 15px;
+}
+
+.ne-bullet {
+  margin: 0 6px;
+}
+
+.wui-card__footer-divider {
+  margin: 0 -(@spacing-medium);
+  border-top: 1px solid @wui-gray-e;
+}
+
+.wui-card__footer-comment-box {
+  margin-top: @spacing-medium
+}
+
+.wui-super-header--divider {
+  padding-bottom: @spacing-small;
+  margin: 0 0 @spacing-small 0;
+  border-bottom: 1px solid @wui-gray-e;
+}
+
+
+// ==========================================================================
+// Action Dropdown (Add to Watchlist, Add to Project)
+// ==========================================================================
+
+.ne-action-dropdown {
+  width: 280px;
+  padding: 0;
+  border: 1px solid @wui-gray-e;
+  margin: 0;
+
+  // Nesting required to override link element styles in cards
+  .ne-action-dropdown__item-content {
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: @spacing-small;
+    color: @wui-gray-6;
+    cursor: pointer;
+    transition: .15s ease-in-out background-color;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: @wui-gray-6;
+      background-color: fade(@wui-blue-1, 20%);
+    }
+  }
+}
+
+.ne-action-dropdown__item {
+  border-bottom: 1px solid @wui-gray-e;
+
+  &:last-child {
+    border: 0;
+  }
+}
+
+.ne-action-dropdown__list {
+  margin: 0;
+}
+
+.ne-action-dropdown__item-title {
+  display: inline-flex;
+  align-items: center;
+  font-size: @fontsize-16;
+}
+
+.ne-action-dropdown__item-text {
+  display: inline-block;
+  max-width: 180px;
+  overflow: hidden;
+  line-height: @lineheight-20;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ne-action-dropdown__status-icon {
+  margin-left: @spacing-small;
+}
+
+.ne-action-dropdown__form {
+  display: flex;
+  padding: @spacing-small;
+  border-top: 1px solid @wui-gray-e;
+}
+
+.ne-action-dropdown__form--active {
+  background-color: fade(@wui-blue-1, 20%);
+}
+
+.wui-input__input-field--ne-action-dropdown {
+  -ms-flex: 0 1 auto;
+  padding-right: 0;
+  margin-right: @spacing-small;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.ne-action-dropdown__add-button--active {
+  border-color: @color-brand;
+  background-color: @color-brand;
+  color: @wui-white;
+}
+
+.ne-action-dropdown__add-button--inactive {
+  background-color: @wui-white;
+}
+
+
+// Spinner
+// ==========================================================================
+
+.wui-spinner {
+  margin: 0 auto;
+}

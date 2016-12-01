@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="en" prefix="og: http://ogp.me/ns/article#">
+
+  <head>
+
+    <title>Thomson Reuters - Project Neon</title>
+
+    <meta charset="utf-8">
+
+    <meta name="description" content="Project Neon"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no"/>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+
+    <!-- bower:css -->
+    <!-- endbower -->
+
+    <!-- inject:css -->
+    <!-- endinject -->
+
+    <!-- bower:js -->
+    <!-- endbower -->
+
+    <!-- inject:js -->
+    <!-- endinject -->
+
+  </head>
+
+  <body ng-cloak>
+
+    <div class="one-p">
+      <div class="header-and-main">
+        <ng-include src="'/modules/navigation/templates/tr-header.html'"></ng-include>
+
+        <div class="main" ui-view autoscroll></div>
+      </div>
+    </div>
+
+    <div data-ne-footer></div>
+
+    <script type="application/javascript">
+      (function(angular){
+        angular.element(document).ready(function() {
+          angular.bootstrap('html', ['ne.mock']);
+        });
+      })(window.angular);
+    </script>
+
+  </body>
+
+</html>
