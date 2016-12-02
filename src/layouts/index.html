@@ -4,7 +4,7 @@
 
   <head>
 
-    <title>Thomson Reuters - Project Neon</title>
+    <title>Thomson Reuters - Innovation Project</title>
 
     <meta charset="utf-8">
 
@@ -33,44 +33,16 @@
     <!-- endinject -->
   </head>
 
-  <body data-ng-cloak>
-
-    <div id="unsupported-browser" class="unsupported-browser text-center">
-      <div class="unsupported-browser-content">
-        <p>
-          <i class="fa fa-exclamation-circle"></i>
-          Sorry. You're using Project Neon on a browser we don't support.  To improve your experience, please <a href="http://whatbrowser.org/" target="_blank">upgrade your browser</a>.
-        </p>
-
-        <div id="ub-dismiss-btn" class="ub-dismiss-btn cursor-pointer">&times;</div>
-      </div>
-    </div>
-    <script>
-      try {
-        window.ne.components.unsupportedBrowserTester.init(document.getElementById('unsupported-browser'), document.getElementById('ub-dismiss-btn'));
-        window.ne.components.unsupportedBrowserTester.hasUnsupportedBrowser(window.navigator.appName, window.navigator.userAgent);
-      } catch (e) {
-        // window.ne.components not fully loaded
-      }
-    </script>
-
-    <div class="ne">
-      <div data-ne-header></div>
-      <div class="main" data-ui-view></div>
-    </div>
-
-    <div data-ne-footer></div>
-
-
+  <body>
+    <div class="container-fluid" data-ui-view></div>
+<div>Thomson Reuters</div>
     <script type="application/javascript">
       (function(angular){
         angular.element(document).ready(function() {
-          angular.bootstrap('html', ['ne']);
+          angular.bootstrap('html', ['rv']);
         });
       })(window.angular);
     </script>
-
-    <ne-linkedin-script-tags></ne-linkedin-script-tags>
 
   </body>
 

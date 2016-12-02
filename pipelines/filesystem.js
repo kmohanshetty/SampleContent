@@ -34,4 +34,5 @@ gulp.task('copy:assets:robots', function () {
     .pipe(gulp.dest('./dest/'));
 });
 
-gulp.task('copy:assets:all', ['copy:assets:data', 'copy:assets:images', 'copy:components:images', 'copy:views:images', 'copy:templates', 'copy:assets:robots']);
+gulp.task('copy:assets:prod:all', ['copy:assets:data', 'copy:assets:images', 'copy:components:images', 'copy:views:images', 'copy:assets:robots']);
+gulp.task('copy:assets:local:all', ['copy:assets:data', 'copy:assets:images', 'copy:components:images', 'copy:views:images', 'copy:templates', 'copy:assets:robots']);

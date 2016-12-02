@@ -1,15 +1,13 @@
 'use strict';
 
 var gulp = require('gulp');
-var wiredep = require('wiredep');
-var inject = require('gulp-inject');
-var htmlAngularValidate = require('html-angular-validate');
+var plugins = require('./configs/plugins.js')();
 
 var appFiles = [
   'dest/assets/js/**/lib/onepsecurity.js',
   'dest/assets/js/**/lib/includes.js',
   'dest/assets/js/**/layouts/*.js',
-  'dest/assets/js/ne-templates.js',
+  'dest/assets/js/ipa-templates.js',
   'dest/assets/js/modules/bootstrap/bootstrap-module.js',
   'dest/assets/js/modules/**/**/*-module.js',
   'dest/assets/js/modules/**/**/*.js',
@@ -22,8 +20,8 @@ var appFiles = [
 
 var minifiedProductionFiles = [
   'dest/assets/js/vendor/vendor.min.js',
-  'dest/assets/js/ne-templates.js',
   'dest/assets/js/app.min.js',
+  'dest/assets/js/ipa-templates.js',
   'dest/assets/css/vendor/vendor.min.css',
   'dest/assets/css/app.min.css'
 ];
@@ -59,38 +57,7 @@ function transformFilepath(filepath) {
 //it will then inject those paths into index.html
 gulp.task('template:build:local', ['template:build:mock'], function () {
   return gulp.src('./src/layouts/index.html')
-    .pipe(wiredep.stream({
-      exclude: [
-        'bower_components/tr-webui/dist/build/css/',
-        'bower_components/angular-sanitize/'
-      ],
-      fileTypes: {
-        html: {
-          replace: {
-            css: transformFilepath,
-            js: transformFilepath
-          }
-        }
-      }
-    }))
-    .pipe(inject(gulp.src(appFiles, { read: false }), { transform: transformFilepath }))
-    .pipe(gulp.dest('./dest'));
-
-});
-
-gulp.task('template:build:prod', function () {
-  return gulp.src('./src/layouts/index.html')
-    .pipe(inject(gulp.src(minifiedProductionFiles, { read: false }), {
-      name: 'bower',
-      transform: transformFilepath
-    }))
-    .pipe(inject(gulp.src(appFiles, { read: false }), { transform: transformFilepath }))
-    .pipe(gulp.dest('./dest'));
-});
-
-gulp.task('template:build:mock', function () {
-  return gulp.src('./src/layouts/mock.html')
-    .pipe(wiredep.stream({
+    .pipe(plugins.wiredep.stream({
       exclude: ['bower_components/tr-webui/dist/build/css/'],
       fileTypes: {
         html: {
@@ -101,18 +68,48 @@ gulp.task('template:build:mock', function () {
         }
       }
     }))
-    .pipe(inject(gulp.src(mockFiles, { read: false }), { transform: transformFilepath }))
+    .pipe(plugins.inject(gulp.src(appFiles, {read: false}), {transform: transformFilepath}))
+    .pipe(gulp.dest('./dest'));
+
+});
+
+gulp.task('template:build:prod', function () {
+  return gulp.src('./src/layouts/index.html')
+    .pipe(plugins.inject(gulp.src(minifiedProductionFiles, {read: false}), {
+      name: 'bower',
+      transform: transformFilepath
+    }))
+    .pipe(plugins.inject(gulp.src(appFiles, {read: false}), {transform: transformFilepath}))
+    .pipe(gulp.dest('./dest'));
+});
+
+gulp.task('template:build:mock', function () {
+  return gulp.src('./src/layouts/mock.html')
+    .pipe(plugins.wiredep.stream({
+      exclude: ['bower_components/tr-webui/dist/build/css/'],
+      fileTypes: {
+        html: {
+          replace: {
+            css: transformFilepath,
+            js: transformFilepath
+          }
+        }
+      }
+    }))
+    .pipe(plugins.inject(gulp.src(mockFiles, {read: false}), {transform: transformFilepath}))
     .pipe(gulp.dest('./dest'));
 
 });
 
 gulp.task('html:lint:layouts', function () {
-  htmlAngularValidate.validate(['./src/layouts/*'], {
+  plugins.htmlAngularValidate.validate([
+      './src/layouts/*'
+    ],
+    {
       customtags: ['*'],
       customattrs: ['*'],
       reportpath: './reports/validation/html-angular-validate/layouts-report.json'
-    })
-    .then(function (result) {
+    }).then(function (result) {
 
       if (result.allpassed) {
         console.log('HTML validator passed all files');
@@ -128,8 +125,10 @@ gulp.task('html:lint:layouts', function () {
 });
 
 gulp.task('html:lint:templates', function () {
-
-  htmlAngularValidate.validate(['./src/modules/**/*.html'], {
+  plugins.htmlAngularValidate.validate([
+      './src/modules/**/*.html'
+    ],
+    {
       tmplext: '.html',
       customtags: ['*'],
       customattrs: ['*'],
@@ -142,8 +141,7 @@ gulp.task('html:lint:templates', function () {
         'The “aria-labelledby” attribute must point to an element in the same document.',
         'Empty heading.'
       ]
-    })
-    .then(function (result) {
+    }).then(function (result) {
 
       if (result.allpassed) {
         console.log('HTML validator passed all files');

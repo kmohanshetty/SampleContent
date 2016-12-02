@@ -2,13 +2,12 @@
 'use strict';
 
 var gulp = require('gulp');
-var util = require('gulp-util');
-var runSequence = require('run-sequence');
+var plugins = require('./configs/plugins.js')();
 
 gulp.task('develop', function () {
 
-  util.log(util.colors.green('starting development environment'));
+  plugins.util.log(plugins.util.colors.green('starting development environment'));
 
-  runSequence('clean:dest', 'build:resources:local', 'template:build:local', 'serve:local', 'watch');
+  plugins.runSequence('clean:dest', 'build:resources:local', 'template:build:local', 'serve:local', 'watch');
 
 });

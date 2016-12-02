@@ -3,10 +3,7 @@
 'use strict';
 
 var gulp = require('gulp');
-var wiredep = require('wiredep');
-var minifyCssPipeline = require('pipeline-minify-css');
-var minifyJsPipeline = require('pipeline-minify-js');
-var mergeStream = require('merge-stream');
+var plugins = require('./configs/plugins.js')();
 
 gulp.task('bower:copy:elements', function () {
   return gulp.src(
@@ -21,45 +18,29 @@ gulp.task('bower:copy:elements', function () {
 
 gulp.task('bower:copy:css:local', function () {
 
-  return gulp.src(wiredep({exclude: ['bower_components/tr-webui/dist/build/css/']}).css, {
-    base: './bower_components',
-    cwd: './bower_components'
-  })
+  return gulp.src(plugins.wiredep({exclude: ['bower_components/tr-webui/dist/build/css/']}).css, {base: './bower_components', cwd: './bower_components'})
     .pipe(gulp.dest('./dest/assets/css/vendor/'));
 });
 
 gulp.task('bower:copy:css:prod', function () {
-  var cssFiles = wiredep({
-    exclude: ['bower_components/tr-webui/dist/build/css/']
-  }).css;
 
-  return gulp.src(cssFiles, {
-    base: './bower_components',
-    cwd: './bower_components'
-  })
-  .pipe(minifyCssPipeline.minifyCSS({
-    concatFilename: 'vendor.min.css',
-    addSourceMaps: false
-  }))
-  .pipe(gulp.dest('./dest/assets/css/vendor/'));
+  return gulp.src(plugins.wiredep({exclude: ['bower_components/tr-webui/dist/build/css/']}).css, {base: './bower_components', cwd: './bower_components'})
+    .pipe(plugins.concat('vendor.min.css'))
+    .pipe(plugins.minifyCss())
+    .pipe(gulp.dest('./dest/assets/css/vendor/'));
 });
 
 gulp.task('bower:copy:js:local', function () {
-  var jsFiles = wiredep({
-    exclude: ['bower_components/angular-sanitize/']
-  }).js;
 
-  return gulp.src(jsFiles, { base: './bower_components', cwd: './bower_components' })
+  return gulp.src(plugins.wiredep().js, {base: './bower_components', cwd: './bower_components'})
     .pipe(gulp.dest('./dest/assets/js/vendor/'));
 });
 
 gulp.task('bower:copy:js:prod', function () {
-  var jsFiles = wiredep({
-    exclude: ['bower_components/angular-sanitize/']
-  }).js;
 
-  return gulp.src(jsFiles, { base: './bower_components', cwd: './bower_components' })
-    .pipe(minifyJsPipeline.minifyJS({ concatFilename: 'vendor.min.js', concat: true, addSourceMaps: false }))
+  return gulp.src(plugins.wiredep().js, {base: './bower_components', cwd: './bower_components'})
+    .pipe(plugins.concat('vendor.min.js'))
+    .pipe(plugins.uglify())
     .pipe(gulp.dest('./dest/assets/js/vendor/'));
 });
 
@@ -73,7 +54,7 @@ gulp.task('bower:copy:fonts:local', function () {
   var webuiFontsStream = gulp.src('./bower_components/tr-webui/dist/build/assets/fonts/**/')
     .pipe(gulp.dest('./dest/assets/fonts/vendor/tr-webui'));
 
-  return mergeStream(faFontsStream, webuiFontsStream);
+  return plugins.mergeStream(faFontsStream, webuiFontsStream);
 });
 
 gulp.task('bower:copy:fonts:prod', function () {
@@ -83,17 +64,17 @@ gulp.task('bower:copy:fonts:prod', function () {
   var webuiFontsStream = gulp.src('./bower_components/tr-webui/dist/build/assets/fonts/**/')
     .pipe(gulp.dest('./dest/assets/fonts/vendor/tr-webui'));
 
-  return mergeStream(faFontsStream, webuiFontsStream);
+  return plugins.mergeStream(faFontsStream, webuiFontsStream);
 });
 
-gulp.task('bower:copy:images:local', function () {
+gulp.task('bower:copy:images:local', function() {
   return gulp.src('./bower_components/tr-webui/dist/build/assets/img/**/*')
-    .pipe(gulp.dest('./dest/assets/img'));
+             .pipe(gulp.dest('./dest/assets/img'));
 });
 
 gulp.task('bower:copy:images:prod', function () {
   return gulp.src('./bower_components/tr-webui/dist/build/assets/img/**/*')
-    .pipe(gulp.dest('./dest/assets/img/'));
+             .pipe(gulp.dest('./dest/assets/img/'));
 
 });
 

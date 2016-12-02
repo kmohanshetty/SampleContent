@@ -2,12 +2,12 @@
 'use strict';
 
 var gulp = require('gulp');
-var handyman = require('pipeline-handyman');
+var plugins = require('./configs/plugins.js')();
 
 gulp.task('clean:dest', function () {
 
-  //runs synchronously
-  return handyman.clean([
+  //make sure del runs synchronously
+  return plugins.del.sync([
     './dest/**'
   ]);
 

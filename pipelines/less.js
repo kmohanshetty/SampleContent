@@ -3,11 +3,7 @@
 'use strict';
 
 var gulp = require('gulp');
-
-var csscomb = require('gulp-csscomb');
-var csslint = require('gulp-csslint');
-var minifyCssPipeline = require('pipeline-minify-css');
-var lessPipeline = require('pipeline-compile-less');
+var plugins = require('./configs/plugins.js')();
 
 var lessLintFiles = ['./src/**/*.less', '!./src/less/bootstrap.less'];
 var lessCombFiles = './src/**/*.less';
@@ -24,47 +20,36 @@ gulp.task('less:build', ['less:build:prod']);
 gulp.task('less:comb', ['less:lint:local'], function () {
 
   return gulp.src(lessCombFiles)
-    .pipe(csscomb())
+    .pipe(plugins.csscomb())
     .pipe(gulp.dest(lessCombDest));
 });
 
 gulp.task('less:lint:prod', function () {
 
   return gulp.src(lessLintFiles)
-    .pipe(lessPipeline.compileLESS({addSourceMaps: false, concatCSS: false}))
-    .pipe(csslint('csslintrc.json'))
-    .pipe(csslint.reporter())
-    .pipe(csslint.failReporter());
+    .pipe(plugins.less())
+    .pipe(plugins.csslint('csslintrc.json'))
+    .pipe(plugins.csslint.reporter())
+    .pipe(plugins.csslint.failReporter());
 
 });
 
 gulp.task('less:lint:local', function () {
 
   return gulp.src(lessLintFiles)
-    .pipe(lessPipeline.compileLESS({addSourceMaps: false, concatCSS: false}))
-    .pipe(csslint('csslintrc.json'))
-    .pipe(csslint.reporter());
+    .pipe(plugins.less())
+    .pipe(plugins.csslint('csslintrc.json'))
+    .pipe(plugins.csslint.reporter());
 
 });
 
 gulp.task('less:build:prod', ['less:lint:prod'], function () {
 
   return gulp.src(lessBuildFiles)
-
-    .pipe(lessPipeline.compileLESS(
-      {
-        concatCSS: true,
-        outputFileName: 'app.min.css',
-        addSourceMaps: false,
-        plugins: {
-          autoprefix: autoprefixerParams
-        }
-      }))
-    .pipe(minifyCssPipeline.minifyCSS(
-      {
-        concatFilename: 'app.min.css',
-        addSourceMaps: false
-      }))
+    .pipe(plugins.less())
+    .pipe(plugins.concat('app.min.css'))
+    .pipe(plugins.autoprefixer(autoprefixerParams))
+    .pipe(plugins.minifyCss())
     .pipe(gulp.dest(lessBuildDest));
 
 });
@@ -72,14 +57,8 @@ gulp.task('less:build:prod', ['less:lint:prod'], function () {
 gulp.task('less:build:local', ['less:lint:local'], function () {
 
   return gulp.src(lessBuildFiles)
-    .pipe(lessPipeline.compileLESS(
-      {
-        concatCSS: false,
-        addSourceMaps: false,
-        plugins: {
-          autoprefix: autoprefixerParams
-        }
-      }))
+    .pipe(plugins.less())
+    .pipe(plugins.autoprefixer(autoprefixerParams))
     .pipe(gulp.dest(lessBuildDest));
 
 });
