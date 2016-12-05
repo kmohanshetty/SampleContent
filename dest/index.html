@@ -27,6 +27,7 @@
 
     <!-- inject:css -->
     <link rel="stylesheet" href="/assets/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/assets/css/views/patent/less/patentRV.css"/>
     <!-- endinject -->
 
     <!-- bower:js -->
@@ -40,31 +41,36 @@
 
     <!-- inject:js -->
     <script src="/assets/js/modules/bootstrap/bootstrap-module.js"></script>
-    <script src="/assets/js/modules/bootstrap/ne-mock-module.js"></script>
+    <script src="/assets/js/modules/components/help/ne-mock-module.js"></script>
+    <script src="/assets/js/modules/components/drawings/ne-mock-module.js"></script>
+    <script src="/assets/js/modules/components/highlighting/ne-mock-module.js"></script>
+    <script src="/assets/js/modules/components/images/ne-mock-module.js"></script>
+    <script src="/assets/js/modules/components/fields/ne-mock-module.js"></script>
+    <script src="/assets/js/modules/components/menubar/ne-mock-module.js"></script>
+    <script src="/assets/js/modules/components/navigation/ne-mock-module.js"></script>
+    <script src="/assets/js/modules/components/pagination/ne-mock-module.js"></script>
+    <script src="/assets/js/modules/components/rv-breadcrumb/ne-mock-module.js"></script>
+    <script src="/assets/js/modules/components/rv-center/rv-center-module.js"></script>
+    <script src="/assets/js/modules/components/rv-footer/rv-footer-module.js"></script>
+    <script src="/assets/js/modules/components/rv-header/rv-header-module.js"></script>
+    <script src="/assets/js/modules/components/title/ne-mock-module.js"></script>
+    <script src="/assets/js/modules/views/business/ne-mock-module.js"></script>
+    <script src="/assets/js/modules/views/japanese/ne-mock-module.js"></script>
+    <script src="/assets/js/modules/views/allcontent/ne-mock-module.js"></script>
+    <script src="/assets/js/modules/views/patent/patent-rv-module.js"></script>
+    <script src="/assets/js/modules/views/literature/ne-mock-module.js"></script>
     <script src="/assets/js/modules/bootstrap/config/app-config.js"></script>
-    <script src="/assets/js/modules/bootstrap/constants/app-constants.js"></script>
-    <script src="/assets/js/modules/bootstrap/constants/en.js"></script>
-    <script src="/assets/js/modules/bootstrap/constants/onep-security-constant.js"></script>
-    <script src="/assets/js/modules/bootstrap/filters/start-from-filter.js"></script>
-    <script src="/assets/js/modules/bootstrap/directives/error-image-directive.js"></script>
-    <script src="/assets/js/modules/bootstrap/directives/file-directive.js"></script>
-    <script src="/assets/js/modules/bootstrap/directives/ng-enter-directive.js"></script>
-    <script src="/assets/js/modules/bootstrap/run/app-module-run.js"></script>
-    <script src="/assets/js/modules/bootstrap/services/file-reader.js"></script>
-    <script src="/assets/js/modules/bootstrap/services/image-reader.js"></script>
-    <script src="/assets/js/modules/bootstrap/services/image-service-deprecated.js"></script>
-    <script src="/assets/js/modules/bootstrap/services/pagination-service.js"></script>
-    <script src="/assets/js/modules/bootstrap/services/socket-event-service.js"></script>
-    <script src="/assets/js/modules/bootstrap/services/string-length-service.js"></script>
-    <script src="/assets/js/modules/bootstrap/services/tr-angular-websocket.js"></script>
-    <script src="/assets/js/modules/bootstrap/services/uid-service.js"></script>
+    <script src="/assets/js/modules/components/rv-center/directives/rv-center-directive.js"></script>
+    <script src="/assets/js/modules/components/rv-footer/directives/rv-footer-directive.js"></script>
+    <script src="/assets/js/modules/components/rv-header/directives/rv-header-directive.js"></script>
+    <script src="/assets/js/modules/views/patent/config/patent-rv-config.js"></script>
+    <script src="/assets/js/modules/views/patent/controllers/patent-rv-controller.js"></script>
     <script src="/assets/js/assets/js/unsupported-browser.js"></script>
     <!-- endinject -->
   </head>
 
-  <body>
-    <div class="container-fluid" data-ui-view></div>
-<div>Thomson Reuters</div>
+  <body data-ng-cloak>
+<div class="container-fluid" data-ui-view></div>
     <script type="application/javascript">
       (function(angular){
         angular.element(document).ready(function() {
