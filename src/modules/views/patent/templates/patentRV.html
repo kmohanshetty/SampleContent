@@ -1,3 +1,12 @@
-<rv-header></rv-header>
-<rv-center></rv-center>
-<rv-footer></rv-footer>
+<div class="col lg-12" style="height: 100%">
+	<div class="row-md-2" ng-init="slider1 = {title: 5}">
+	  <rv-header title=slider1.title></rv-header>
+	  <rv-header title='test two'></rv-header>
+	</div>
+	<div class="row-md-8">
+    <rv-center content-type=vm.param images-enabled=true highlight-enabled=false></rv-center>
+  </div>
+	<div class="row-md-2">
+    <rv-footer></rv-footer>
+  </div>
+</div>

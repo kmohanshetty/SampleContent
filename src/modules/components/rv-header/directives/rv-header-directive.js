@@ -12,7 +12,7 @@
       restrict: 'E',
       templateUrl: 'modules/components/rv-header/templates/rv-header-template.html',
       scope: {
-        title: '@'
+        title: '@?'
       },
       bindToController: true,
       controllerAs: 'vm',
@@ -24,6 +24,7 @@
 
   function RVHeaderController () {
     var vm = this;
-    vm.title = "Patent Record View";
+   // vm.title = "Patent Record View";
+    console.log(vm.title);
   }
 })(angular);

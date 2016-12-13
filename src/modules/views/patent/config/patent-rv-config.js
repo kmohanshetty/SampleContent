@@ -14,7 +14,7 @@
         url: '/patentRV',
         templateUrl: 'modules/views/patent/templates/patentRV.html',
         controller: 'PatentRVController',
-        controllerAs: 'patentVm'
+        controllerAs: 'vm'
       });
 
   }
