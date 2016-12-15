@@ -3,7 +3,7 @@
 }
 
 .arrow-center{
-	padding-top: 125px;
+	padding-top: 180px;
 }
 
 .zoom {      
@@ -24,7 +24,18 @@ add browser prefixes**/
 -moz-transform: scale(2.5);  
 -webkit-transform: scale(2.5);  
 -o-transform: scale(1.5);  
-transform: scale(1.41);    
+transform: scale(1.6);    
 position:relative;      
 z-index:100;  
 }
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  max-height: 400px;    /* Set slide height here */
+
+}
+
+.carousel-indicators .active{
+    background-color: blue;
+}
+

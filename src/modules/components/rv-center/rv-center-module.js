@@ -3,6 +3,6 @@
 (function (angular) {
 
   angular
-    .module('rv.components.RVCenterModule', []);
+    .module('rv.components.RVCenterModule', ['ngResource']);
 
 })(angular);

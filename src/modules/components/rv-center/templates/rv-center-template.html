@@ -1,30 +1,9 @@
-<div class="row">
-  <div class="col-md-8 content-display-scroll" style ="border-right: solid;height:600px;">
-  <rv-content></rv-content>
+<div class="row" >
+<div class="col-md-9 content-display-scroll" id="scrollLeft">
+    <rv-content content=vm.recordData></rv-content>
   </div>
 
-  <div class="col-md-4" style ="height:600px;">
-    <ul class="nav nav-tabs">
-      
-      <li class="active" ng-if="vm.imagesEnabled">
-        <a data-toggle="tab" href="#images">IMAGES</a>
-      </li>
-      
-      
-      <li ng-class="{active: vm.imagesEnabled !== true}" ng-if="vm.highlightEnabled">
-        <a data-toggle="tab" href="#highlight">HIGHLIGHT</a>
-      </li>
-      
-    </ul>
-
-    <div class="tab-content">
-      <div id="images" class="tab-pane fade in active" ng-if="vm.imagesEnabled">
-        <rv-image imagedata="vm.test"></rv-image>
-      </div>
-    <div id="highlight" ng-class="{'tab-pane fade in active': vm.imagesEnabled !== true,'tab-pane fade' : vm.imagesEnabled === true}"ng-if="vm.highlightEnabled">
-      <h1>{{vm.contentType}}</h1>
-    </div>
-    </div>
+  <div class="col-md-3">
+  <rv-info additional-info=vm.recordData.additionalInformation></rv-info>
   </div>
 </div>
-

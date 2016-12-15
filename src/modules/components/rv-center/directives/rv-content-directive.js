@@ -11,10 +11,7 @@
       restruct: 'AE',
       scope: {},
       bindToController: {
-        param: '=',
-        another: '=',
-        countValue: '=',
-        testValue: '='
+        content: '=',
       },
       controllerAs: 'vm',
       controller: contentController,
@@ -27,19 +24,16 @@
   function contentController ($scope, ContentDataService) {
     var vm = this; // jshint ignore:line
       vm.test = 'Image hello world';
-      console.log(ContentDataService.getRecordData());
-
-      ContentDataService.getRecordData().then(function (data){
-      vm.sections = data.sections;
-      console.log(data);
-     });
-
       vm.alternateClass = function(index){
       if(index %2 === 0){
         return 'rv-section-even';
       }else{
         return 'rv-section-odd';
       }
+    }
+
+    vm.openHelpWindow = function(hrefValue){
+      window.open('http://www.thomsoninnovation.com/tip-innovation/support/help/patent_fields.htm#'+hrefValue, "DescriptiveWindowName", "width=550px,height=550px");
     }
   }
 })(angular);

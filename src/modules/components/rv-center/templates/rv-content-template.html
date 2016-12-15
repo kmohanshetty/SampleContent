@@ -1,44 +1,15 @@
-<!-- <div class="row">
-  <div class="col-md-12 col-lg-12" ng-repeat="section in vm.sections ">
-    <div class="col-md-12">
-      <h5 class="rv-section">{{section.sectionName}}</h5>
+<div><h4><b>Self monitoring GPS on mobile device</b></h4>
+  <div class="col-md-12 rv-image-container">
+    <rv-image publication-number="USRE46237E1"></rv-image>
+  </div>
+  <div class="row" ng-repeat="field in vm.content.fields track by $index">
+    <div class="col-md-12 rv-section" id ="{{'field'+($index+1)}}">
+      {{field.fieldName}}
     </div>
-    <div class="col-md-12" ng-repeat="field in section.fields track by $fieldindex">
-      <div class="boxed-content left-aligned left-boxed-icon">
-        <div ng-class="vm.alternateClass($fieldindex)">
-        
-        <h6><b>{{field.fieldName}} <i class="fa fa-question pointer-hand" aria-hidden="true"></i></b></h6>
-        <div>
-          {{field.fieldContents}}
-        </div>
-        </div>
-      </div>
+    <div class="col-md-12 rv-subField" ng-repeat="subField in field.subFields track by $index" ng-class="vm.alternateClass($index)">
+      <b class="">{{subField.name}}</b>
+      <i class="fa fa-question pointer-hand" aria-hidden="true"></i><br>
+      <p>{{subField.contents}}</p>
     </div>
   </div>
-  </div> -->
-
-
-<div class="col-md-12">
-      <h5 class="rv-section">Bibliography</h5>
-    </div>
-    <div class="col-md-12">
-      <div class="boxed-content left-aligned left-boxed-icon">
-        <div ng-class="vm.alternateClass(1)">
-        <p>
-        <h6><b>DWPI Title <i class="fa fa-question pointer-hand" aria-hidden="true"></i></b></h6>
-        Treating cancer, e.g. ovarian, breast, lung, or endometrial cancer, comprises administering to the subject an antibody that binds to OV064
-        </p>
-        </div>
-      </div>
-      <div class="boxed-content left-aligned left-boxed-icon">
-        <div ng-class="vm.alternateClass(2)">
-        <p>
-        <h6><b>Original Title <i class="fa fa-question pointer-hand" aria-hidden="true"></i></b></h6>
-        Antibodies that bind OV064 and methods of use therefor
-        </p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-12">
-      <rv-image imagedata="vm.test"></rv-image>
-    </div>
+</div>
