@@ -7,5 +7,6 @@ angular.module('rv', [
 'rv.components.RVFooterModule',
 'rv.components.RVCenterModule',
 'rv.views.PatentRVModule',
-'rv.components.ImagesModule'
+'rv.components.ImagesModule',
+'rv.routes.PatentModule'
 ]);
