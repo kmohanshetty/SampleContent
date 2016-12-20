@@ -1,10 +1,10 @@
-'use stri	ct';
+'use strict';
 
 (function (angular) {
 
   angular
-    .module('rv.components.RVCenterModule')
-    .directive('rvInfo', rvInfoDirective);
+  .module('rv.components.RVCenterModule')
+  .directive('rvInfo', rvInfoDirective);
 
   function rvInfoDirective() {
 
@@ -12,7 +12,7 @@
       restrict: 'AE',
       scope: {},
       bindToController: {
-        additionalInfo : '='
+        additionalInfo: '='
       },
       controller: rvInfoController,
       controllerAs: 'vm',
@@ -23,8 +23,8 @@
   rvInfoController.$inject = [];
 
   function rvInfoController() {
-  	var vm=this;
-  	console.log(vm.additionalInfo);
+    var vm = this; // jshint ignore:line
+    console.log(vm.additionalInfo);
   }
 
 })(angular);

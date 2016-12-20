@@ -22,18 +22,17 @@
     };
   }
 
-  centerController.$inject = ['$scope','ContentDataService'];
+  centerController.$inject = ['$scope', 'ContentDataService'];
 
-  function centerController ($scope,ContentDataService) {
+  function centerController($scope, ContentDataService) {
     var vm = this; // jshint ignore:line
-    
-        var results =[];
-      results.$resolved = false;
-        results.$promise = ContentDataService.get({recordNo: 'USRE46237E1'})
-          .$promise
-          .then(function (content) {
-            vm.recordData = content;
-          });
+    var results = [];
+    results.$resolved = false;
+    results.$promise = ContentDataService.get({recordNo: 'USRE46237E1'})
+    .$promise
+    .then(function (content) {
+      vm.recordData = content;
+    });
 
   }
 })(angular);

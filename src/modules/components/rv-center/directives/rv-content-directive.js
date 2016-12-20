@@ -8,7 +8,7 @@
 
   function contentDirective() {
     return {
-      restruct: 'AE',
+      restrict: 'AE',
       scope: {},
       bindToController: {
         content: '=',
@@ -19,21 +19,21 @@
     };
   }
 
-  contentController.$inject = ['$scope','ContentDataService'];
+  contentController.$inject = ['$scope', 'ContentDataService', 'RV_CENTER_CONST'];
 
-  function contentController ($scope, ContentDataService) {
+  function contentController($scope, ContentDataService, RV_CENTER_CONST) {
     var vm = this; // jshint ignore:line
-      vm.test = 'Image hello world';
-      vm.alternateClass = function(index){
-      if(index %2 === 0){
+    vm.test = 'Image hello world';
+    vm.alternateClass = function(index) {
+      if (index % 2 === 0) {
         return 'rv-section-even';
-      }else{
+      }else {
         return 'rv-section-odd';
       }
-    }
+    };
 
-    vm.openHelpWindow = function(hrefValue){
-      window.open('http://www.thomsoninnovation.com/tip-innovation/support/help/patent_fields.htm#'+hrefValue, "DescriptiveWindowName", "width=550px,height=550px");
-    }
+    vm.openHelpWindow = function(hrefValue) {
+      window.open(RV_CENTER_CONST.HELP_BASE_URL + hrefValue, 'DescriptiveWindowName', 'width=550px,height=550px');
+    };
   }
 })(angular);

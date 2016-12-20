@@ -8,7 +8,7 @@
     </div>
     <div class="col-md-12 rv-subField" ng-repeat="subField in field.subFields track by $index" ng-class="vm.alternateClass($index)">
       <b class="">{{subField.name}}</b>
-      <i class="fa fa-question pointer-hand" aria-hidden="true"></i><br>
+      <i class="fa fa-question pointer-hand" aria-hidden="true" ng-click="vm.openHelpWindow(subField.helpLink)"></i><br>
       <p>{{subField.contents}}</p>
     </div>
   </div>

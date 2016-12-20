@@ -5,7 +5,7 @@
   angular
     .module('rv.components.RVFooterModule')
     .directive('rvFooter', RVFooterDirective)
-    .controller('rvFooterController',RVFooterController);
+    .controller('rvFooterController', RVFooterController);
 
   function RVFooterDirective() {
     return {
@@ -19,8 +19,8 @@
       controller: 'rvFooterController'
     };
   }
-function RVFooterController () {
+  function RVFooterController() {
       var vm = this;
-      vm.title = "Patent RecordView";
+      vm.title = 'Patent RecordView';
     }
 })(angular);

@@ -1,17 +1,15 @@
 'use strict';
 
-(function (angular){
+(function (angular) {
 
   angular
-    .module('rv.components.RVCenterModule')
-    .service('ContentDataService', ContentDataService);
+  .module('rv.components.RVCenterModule')
+  .service('ContentDataService', ContentDataService);
 
-  ContentDataService.$inject = ['$resource'];
+  ContentDataService.$inject = ['$resource', 'RV_CENTER_CONST'];
 
-  function ContentDataService($resource){
-
-    var contentREST = $resource('http://localhost:8085/RESTServer/getRecord/:recordNo/', {recordNo: '@recordNo'});
-
+  function ContentDataService($resource, RV_CENTER_CONST) {
+    var contentREST = $resource(RV_CENTER_CONST.REST_RECORD_URL, {recordNo: '@recordNo'});
     return contentREST;
   }
 })(angular);

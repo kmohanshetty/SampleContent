@@ -22,9 +22,9 @@
 
   RVHeaderController.$inject = [];
 
-  function RVHeaderController () {
-    var vm = this;
-   // vm.title = "Patent Record View";
+  function RVHeaderController() {
+    var vm = this; // jshint ignore:line
+    // vm.title = "Patent Record View";
     console.log(vm.title);
   }
 })(angular);
