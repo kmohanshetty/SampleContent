@@ -19,9 +19,9 @@
     };
   }
 
-  contentController.$inject = ['$scope', 'ContentDataService', 'RV_CENTER_CONST'];
+  contentController.$inject = ['ContentDataService', 'RV_CENTER_CONST'];
 
-  function contentController($scope, ContentDataService, RV_CENTER_CONST) {
+  function contentController(ContentDataService, RV_CENTER_CONST) {
     var vm = this; // jshint ignore:line
     vm.test = 'Image hello world';
     vm.alternateClass = function(index) {

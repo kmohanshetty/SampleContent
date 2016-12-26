@@ -22,9 +22,9 @@
     };
   }
 
-  centerController.$inject = ['$scope', 'ContentDataService'];
+  centerController.$inject = ['ContentDataService'];
 
-  function centerController($scope, ContentDataService) {
+  function centerController(ContentDataService) {
     var vm = this; // jshint ignore:line
     var results = [];
     results.$resolved = false;
@@ -33,6 +33,5 @@
     .then(function (content) {
       vm.recordData = content;
     });
-
   }
 })(angular);

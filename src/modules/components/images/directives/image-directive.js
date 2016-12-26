@@ -26,7 +26,8 @@
       vm.images = data;
     }).catch(function (data) { // jshint ignore:line
       // I have written this code to hardcode urls for now. Once a working URL is available, the below line can be deleted
-      vm.images = ['http://localhost:8085/RESTServer/getRecordViewImage/USRE46237E1/1/', 'http://localhost:8085/RESTServer/getRecordViewImage/USRE46237E1/2/', 'http://localhost:8085/RESTServer/getRecordViewImage/USRE46237E1/3/', 'http://localhost:8085/RESTServer/getRecordViewImage/USRE46237E1/4/', 'http://localhost:8085/RESTServer/getRecordViewImage/USRE46237E1/5/', 'http://localhost:8085/RESTServer/getRecordViewImage/USRE46237E1/6/'];
+      var URL = 'http://10.30.148.206:8080/RESTServer/getRecordViewImage/USRE46237E1/';
+      vm.images = [URL + '1/', URL + '2/', URL + '3/', URL + '4/', URL + '5/', URL + '6/'];
     });
 
     vm.activeClass = function(index) {

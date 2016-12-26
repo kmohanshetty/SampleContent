@@ -3,7 +3,7 @@
     <rv-image publication-number="USRE46237E1"></rv-image>
   </div>
   <div class="row" ng-repeat="field in vm.content.fields track by $index">
-    <div class="col-md-12 rv-section" id ="{{'field'+($index+1)}}">
+    <div class="col-md-12 rv-section" id ="{{field.fieldName}}">
       {{field.fieldName}}
     </div>
     <div class="col-md-12 rv-subField" ng-repeat="subField in field.subFields track by $index" ng-class="vm.alternateClass($index)">
